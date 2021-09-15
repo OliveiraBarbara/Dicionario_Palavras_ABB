@@ -82,18 +82,16 @@ void remover(arvore **p, char *str){
 	if(strcmp(str, (*p)->palavra) == 0){
 		q = (*p);
 		if(((*p)->esq == NULL) && ((*p)->dir == NULL)){ /*remocao para no folha*/
-			free(q);
+			free(*p);
                (*p) = NULL; 
 		}else if((*p)->esq == NULL){ /*remocao para no com um filho a direita*/
 			(*p) = (*p)->dir;
 			q->dir = NULL;
 			free(q);
-			q = NULL;
 		}else if((*p)->dir == NULL){ /*remocao para no com um filho a esquerda*/
 			(*p) = (*p)->esq;
 			q->esq = NULL;
 			free(q);
-			q = NULL;
 		}else{ /*remocao para no com 2 filhos*/
 			q = (*p)->esq;
 			while(q->dir != NULL)
@@ -173,3 +171,12 @@ void lista_idioma_emIntervalo(arvore *tree, char *id, char *i, char *f){
 	} 
 }
 
+/*Funcao libera: Libera o espaco que foi armazenado em uma arvore*/
+void libera(arvore *tree){/*realizo a liberacao do espaço armazenado da arvore em pos-ordem para começar dos nos folhas e por ultimo a raiz*/
+	
+	if(tree != NULL){ 
+		libera(tree->esq);
+		libera(tree->dir);
+		free(tree);
+	}
+}

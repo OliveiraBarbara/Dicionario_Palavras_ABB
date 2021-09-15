@@ -38,3 +38,5 @@ void remove_sinonimo(arvore **tree, char *str1, char *str2);
 
 void lista_idioma(arvore *tree, char *id);
 void lista_idioma_emIntervalo(arvore *tree, char *id, char *i, char *f);
+
+void libera(arvore *tree);

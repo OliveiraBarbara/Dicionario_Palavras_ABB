@@ -96,5 +96,7 @@ int main(void){
 		scanf("%s", acao); /*Leio novamente a acao para definir qual a proxima operacao a ser realizada*/
 	}
 	
+	libera(tree);
+	
 	return 0;
 }
