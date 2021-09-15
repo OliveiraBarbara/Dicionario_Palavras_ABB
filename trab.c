@@ -13,7 +13,7 @@ Professor: Ronaldo Fiorilo
 
 int main(void){
 	int j=0, k=0, i; /*Variáveis contadoras usadas na separação da string para vetor de palavras.*/
-	char acao[MAX], string[MAX], str[2][MAX], str1[MAX], str2[MAX], id[3][3], id1[3], id2[3]; /*Acao: Variavel utilizada para ler qual operacao realizarei no processo // String: utilizada para ler as palavras que vai remover // Vetor Str: utilizada para separa a string de palavras com espaço, cada uma em uma posição do vetor // Str1 e Str2: usadas para ler as palavras que vou inserir ou buscar // Id1 e Id2: usadas para ler o idioma.*/
+	char acao[MAX], string[MAX], str[3][MAX], str1[MAX], str2[MAX], id[4][3], id1[3], id2[3]; /*Acao: Variavel utilizada para ler qual operacao realizarei no processo // String: utilizada para ler as palavras que vai remover ou listar // Vetor Str: utilizada para separa a string de palavras com espaço, cada uma em uma posição do vetor // Str1 e Str2: usadas para ler as palavras que vou inserir ou buscar // Id1 e Id2: usadas para ler o idioma. // Vetor id: usado para armazenar o idioma e as letras no comando listar*/
 	arvore *tree;
 	
 	tree = NULL;
@@ -23,7 +23,7 @@ int main(void){
 	/*While para continuar fazendo processos enquanto acao for diferente de fim*/
 	while(strcmp("fim", acao)!= 0){
 	
-		/*Se for o comando insere, eu leio as palavras e  idioma e chamo a função para inserir na tabela*/
+		/*Se for o comando insere, eu leio as palavras e  idioma e chamo a função para inserir na arvore*/
 		if(strcmp("insere", acao) == 0){
 			scanf("%s", id1);
 			scanf("%s", str1);
@@ -40,6 +40,7 @@ int main(void){
 			busca(tree, str1);
 		}
 		
+		/*Se for o comando remove eu leio a/as palavras que devo remover e chamo a função.*/
 		if(strcmp("remove", acao) == 0){
 			scanf("%[^\n]s", string);
 			j=0, k=0;
@@ -67,6 +68,7 @@ int main(void){
 			}
 		}
 		
+		/*Se for o comando lista eu leio o idioma (e letras do intervalo).*/
 		if(strcmp("lista", acao) == 0){
 			scanf("%[^\n]s", string);
 			j=0, k=0;
@@ -82,8 +84,8 @@ int main(void){
 					k = 0;
 				}
 			}
-			
-			/*Verifico se o vetor tem 1 ou 2 palavras e chamo o remover correspondente*/
+
+			/*Verifico se o vetor tem 1 ou 3 palavras e chamo o lista correspondente*/
 			if(j == 1){
 				id[1][k] = '\0';
 				lista_idioma(tree, id[1]);
@@ -96,7 +98,7 @@ int main(void){
 		scanf("%s", acao); /*Leio novamente a acao para definir qual a proxima operacao a ser realizada*/
 	}
 	
-	libera(tree);
+	libera(tree); /*libero os espaços alocados*/
 	
 	return 0;
 }

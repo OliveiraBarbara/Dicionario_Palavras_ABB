@@ -21,12 +21,13 @@ typedef struct lista_sinonimo{
 /*Struct da arvore para armazenar as palavras*/
 typedef struct arvore{
 	char palavra[MAX];
-	char idioma[2];
+	char idioma[3];
 	struct lista_sinonimo *primeiro_conceito;
 	struct arvore *esq; 
 	struct arvore *dir;
 }arvore;
 
+/*Escopo de todas as funcoes utilizadas*/
 lista_sinonimo *aloca_sinonimo(char *s);
 arvore *aloca(char *str, char *id, char *s);
 void insereArvore(arvore **tree, char *str, char *id, char *s);
